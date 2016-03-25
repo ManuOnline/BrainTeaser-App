@@ -37,10 +37,10 @@ class CustomButton: UIButton {
         self.tintColor = fontColor
         self.layer.cornerRadius = radius
         
-        self.addTarget(self, action: "scaleToSmall", forControlEvents: .TouchDown)
-        self.addTarget(self, action: "scaleToSmall", forControlEvents: .TouchDragEnter)
-        self.addTarget(self, action: "scaleAnimation", forControlEvents: .TouchUpInside)
-        self.addTarget(self, action: "scaleToDefault", forControlEvents: .TouchDragExit)
+        self.addTarget(self, action: #selector(CustomButton.scaleToSmall), forControlEvents: .TouchDown)
+        self.addTarget(self, action: #selector(CustomButton.scaleToSmall), forControlEvents: .TouchDragEnter)
+        self.addTarget(self, action: #selector(CustomButton.scaleAnimation), forControlEvents: .TouchUpInside)
+        self.addTarget(self, action: #selector(CustomButton.scaleToDefault), forControlEvents: .TouchDragExit)
     }
     
     func scaleToSmall() {
