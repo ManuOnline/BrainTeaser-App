@@ -58,7 +58,7 @@ class AnimationEngine {
                 let con = self.constraints[index]
                 con.pop_addAnimation(moveAnim, forKey: "moveOnScreen")
                 
-                index++
+                index += 1
                 
                 
             } while (index < self.constraints.count)

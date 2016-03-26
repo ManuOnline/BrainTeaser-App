@@ -37,6 +37,11 @@ class GameVC: UIViewController {
         currentCard = createCardFromNib()
         currentCard.center = AnimationEngine.screenCenterPosition
         self.view.addSubview(currentCard)
+        
+        let notificationCenter = NSNotificationCenter.defaultCenter()
+        notificationCenter.addObserver(self, selector: #selector(GameVC.stopTimer), name: UIApplicationDidEnterBackgroundNotification, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(GameVC.startTimer), name: UIApplicationWillEnterForegroundNotification, object: nil)
+        
     }
     
     func countDown() {
@@ -53,10 +58,18 @@ class GameVC: UIViewController {
         }
     }
     
+    func startTimer() {
+        timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(GameVC.countDown), userInfo: nil, repeats: true)
+    }
+    
+    func stopTimer() {
+        timer.invalidate()
+    }
+    
     
     @IBAction func yesPressed(sender: UIButton) {
         if sender.titleLabel?.text == "START" {
-            timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(GameVC.countDown), userInfo: nil, repeats: true)
+            startTimer()
         }
         
         if sender.titleLabel?.text == "YES" {
